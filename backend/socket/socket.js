@@ -6,13 +6,23 @@ import cors from "cors";
 const app = express();
 console.log("hi");
 const server = http.createServer(app);
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const allowedOrigins = [
+  "http://localhost:5173",                     // for local development
+  "https://baatcheet-frontend-fuvm.onrender.com"       // deployed frontend
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 const io = new Server(server, {
-    cors:{
-        origin:['http://localhost:5173'],
-        methods:['GET', 'POST'],
-    },
+  cors: {
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+  },
 });
+
 
 export const getReceiverSocketId = (receiverId) => {
     return userSocketMap[receiverId];

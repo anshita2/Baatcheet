@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
     console.log(user);
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/signup", user, {
+      const res = await axios.post("https://baatcheet-backe.onrender.com/api/auth/signup", user, {
         headers: {
           'Content-Type': 'application/json'
         },

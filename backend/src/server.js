@@ -13,10 +13,16 @@ const port=process.env.PORT||4000;
 app.get("/",(req,res)=>{
     res.send("<h1>welcome to chat app</h1>")
 })
+const allowedOrigins = [
+  "http://localhost:5173",                      // for local development
+  "https://baatcheet-frontend-fuvm.onrender.com"         // your deployed frontend
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // your frontend origin
-  credentials: true,               // allow cookies/token
+  origin: allowedOrigins,
+  credentials: true,
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth",authroutes);
